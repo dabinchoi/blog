@@ -1,5 +1,4 @@
 package my.example.blog.controller;
-
 import my.example.blog.domain.Account;
 import my.example.blog.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;

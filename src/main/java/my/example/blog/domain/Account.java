@@ -34,7 +34,7 @@ public class Account {
     )
     private Set<Role> roles;
 
-    @OneToOne(mappedBy = "account")
+    @OneToOne(mappedBy = "account", fetch = FetchType.LAZY)
     private Blog blog;
 
     public Account(){

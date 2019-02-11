@@ -11,13 +11,13 @@ import java.util.List;
 public class AccountService {
     AccountRepository accountRepository;
 
-    public AccountService(AccountRepository accountRepository){
+    public AccountService(AccountRepository accountRepository) {
+
         this.accountRepository = accountRepository;
     }
 
 
-
-    public List<Account> getAccountAll(){
+    public List<Account> getAccountAll() {
         return accountRepository.findAll();
     }
 }
