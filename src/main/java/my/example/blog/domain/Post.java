@@ -2,7 +2,7 @@ package my.example.blog.domain;
 
 import lombok.Getter;
 import lombok.Setter;
-import my.example.blog.domain.Category;
+
 
 import javax.persistence.*;
 import java.util.ArrayList;

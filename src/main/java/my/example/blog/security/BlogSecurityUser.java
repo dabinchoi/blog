@@ -7,7 +7,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
 import java.util.Collection;
-import java.util.Collections;
 
 @Getter
 @Setter
@@ -20,7 +19,8 @@ public class BlogSecurityUser extends User {
         super(username, password, true, true, true, true, authorities);
     }
 
-    public String getEmail() {
+    public String getEmail(){
         return super.getUsername();
     }
 }
+
