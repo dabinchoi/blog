@@ -36,10 +36,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/main")
                 .permitAll().and()
                 .authorizeRequests() // 인가에 대한 설정
+                .antMatchers("/users/delete").permitAll()
                 .antMatchers("/users/join").permitAll()
                 .antMatchers("/users/welcome").permitAll()
                 .antMatchers("/users/login").permitAll()
                 .antMatchers("/users/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/posts/**").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/main").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().fullyAuthenticated()

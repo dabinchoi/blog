@@ -26,6 +26,7 @@ public class Comment {
     private Post post;
 
     public Comment(){
+
         createDate = new Date();
     }
 }

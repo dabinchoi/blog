@@ -20,11 +20,8 @@ public class Blog {
     @Column(length = 255)
     private String url;
 
-    @OneToOne
-    @JoinColumn(name = "account_id")
-    private Account account;
-
-    @OneToMany(mappedBy = "blog")
+    @OneToMany
+    @JoinColumn(name = "blog_id")
     private List<Category> categoryList;
 
     public Blog(){

@@ -20,14 +20,11 @@ public class Category {
     private String name;
     private int ordering;
 
-    @ManyToOne
-    @JoinColumn(name = "blog_id")
-    private Blog blog;
 
     @OneToMany(mappedBy = "category")
     private List<Post> posts;
 
-    public Category(){
+    public Category() {
         posts = new ArrayList<>();
     }
 }

@@ -11,14 +11,13 @@ insert into account_roles(account_id, role_id) values( 1, 1);
 insert into account_roles(account_id, role_id) values( 2, 1);
 insert into account_roles(account_id, role_id) values( 1, 2);
 
-insert into blog(id, title, url, account_id) values(1, 'HELLO JAVA', 'java', 1);
-insert into blog(id, title, url, account_id) values(2, 'HELLO JPA', 'JPA', 2);
+insert into blog(id, title, url) values(1, 'HELLO JAVA', 'java');
 
-insert into category(id, name, ordering, blog_id) values(1, '기본문법', 1, 1);
-insert into category(id, name, ordering, blog_id) values(2, '객체지향문', 2, 1);
+insert into category(id, name, ordering) values(1, '기본문법', 1);
+insert into category(id, name, ordering) values(2, '객체지향문', 2);
 
-insert into category(id, name, ordering, blog_id) values(3, 'JPA', 1, 2);
-insert into category(id, name, ordering, blog_id) values(4, 'JPQL', 2, 2);
+insert into category(id, name, ordering) values(3, 'JPA', 3);
+insert into category(id, name, ordering) values(4, 'JPQL', 4);
 
 insert into post(id, title, content, create_date, category_id) values(1, 'title1', 'content1', now(), 1);
 insert into post(id, title, content, create_date, category_id) values(2, 'title2', 'content2', now(), 1);
