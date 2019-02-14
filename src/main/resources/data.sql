@@ -19,9 +19,9 @@ insert into category(id, name, ordering) values(2, '객체지향문', 2);
 insert into category(id, name, ordering) values(3, 'JPA', 3);
 insert into category(id, name, ordering) values(4, 'JPQL', 4);
 
-insert into post(id, title, content, create_date, category_id) values(1, 'title1', 'content1', now(), 1);
-insert into post(id, title, content, create_date, category_id) values(2, 'title2', 'content2', now(), 1);
-insert into post(id, title, content, create_date, category_id) values(3, 'title3', 'content3', now(), 1);
-insert into post(id, title, content, create_date, category_id) values(4, 'title4', 'content4', now(), 1);
-insert into post(id, title, content, create_date, category_id) values(5, 'title5', 'content5', now(), 1);
-insert into post(id, title, content, create_date, category_id) values(6, 'title6', 'content6', now(), 2);
+insert into post(id, title, content, create_date, category_id, account_id) values(1, 'title1', 'content1', now(), 1,1);
+insert into post(id, title, content, create_date, category_id, account_id) values(2, 'title2', 'content2', now(), 1,1);
+insert into post(id, title, content, create_date, category_id, account_id) values(3, 'title3', 'content3', now(), 1,1);
+insert into post(id, title, content, create_date, category_id, account_id) values(4, 'title4', 'content4', now(), 1,1);
+insert into post(id, title, content, create_date, category_id, account_id) values(5, 'title5', 'content5', now(), 1,1);
+insert into post(id, title, content, create_date, category_id, account_id) values(6, 'title6', 'content6', now(), 2,1);

@@ -51,4 +51,13 @@ public class Post {
         imageFile.setPost(this); // 쌍방향이기 때문에 this를 참조하도록 한다.
         imageFiles.add(imageFile);
     }
+
+    public String getShortContent(){
+        if(content.length()>100)
+            return content.substring(0,100);
+        else
+            return content;
+    }
+
+
 }

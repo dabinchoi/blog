@@ -6,20 +6,17 @@ import my.example.blog.domain.ImageFile;
 import my.example.blog.domain.Post;
 import my.example.blog.security.BlogSecurityUser;
 import my.example.blog.service.CategoryService;
+import my.example.blog.service.ImageFileService;
 import my.example.blog.service.PostService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
@@ -31,6 +28,30 @@ import java.util.UUID;
 public class PostController {
     private final CategoryService categoryService;
     private final PostService postService;
+    private final ImageFileService imageFileService;
+
+    @GetMapping("/images/{id}")
+    @ResponseBody // 컨트롤러안에서 직접 response를 이용하여 결과를 출력할 때 사용
+    public void downloadImage(
+            @PathVariable(name = "id") Long id,
+            HttpServletResponse response
+    ) {
+        ImageFile imageFile = imageFileService.getImageFile(id);
+        response.setContentType(imageFile.getMimeType());
+
+        try(FileInputStream fis = new FileInputStream(imageFile.getSaveFileName());
+            OutputStream out = response.getOutputStream()
+        ){
+            byte[] buffer = new byte[1024];
+            int readCount = 0;
+
+            while((readCount = fis.read(buffer)) != -1){
+                out.write(buffer, 0, readCount);
+            }
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
 
     @GetMapping("/write")
     public String writeform(Model model){
@@ -51,6 +72,7 @@ public class PostController {
 
         // 로그인을 한 사용자 정보는 Security필터에서 SecurityContextHolder의 ThreadLocal에 저장된다.
         // 그래서 같은 쓰레드상이라면 로그인한 정보를 읽어들일 수 있다.
+        // authentication.principal
         BlogSecurityUser securityUser =
                 (BlogSecurityUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
