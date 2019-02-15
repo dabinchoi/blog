@@ -30,6 +30,14 @@ public class PostController {
     private final PostService postService;
     private final ImageFileService imageFileService;
 
+    @GetMapping("/{id}")
+    public String view(@PathVariable(name = "id") Long id,
+                       Model model){
+        Post post = postService.getPost(id);
+        model.addAttribute("post", post);
+        return "posts/view";
+    }
+
     @GetMapping("/images/{id}")
     @ResponseBody // 컨트롤러안에서 직접 response를 이용하여 결과를 출력할 때 사용
     public void downloadImage(
@@ -82,16 +90,18 @@ public class PostController {
 
         if(images != null && images.length > 0) {
             for (MultipartFile image : images) {
-                ImageFile imageFile = new ImageFile();
-                imageFile.setLength(image.getSize());
-                imageFile.setMimeType(image.getContentType());
-                imageFile.setName(image.getOriginalFilename());
-                // 파일 저장
-                // /tmp/2019/2/12/123421-12341234-12341234-123423142
-                String saveFileName = saveFile(image);
+                if(!image.isEmpty()) {
+                    ImageFile imageFile = new ImageFile();
+                    imageFile.setLength(image.getSize());
+                    imageFile.setMimeType(image.getContentType());
+                    imageFile.setName(image.getOriginalFilename());
+                    // 파일 저장
+                    // /tmp/2019/2/12/123421-12341234-12341234-123423142
+                    String saveFileName = saveFile(image);
 
-                imageFile.setSaveFileName(saveFileName); // save되는 파일명
-                post.addImageFile(imageFile);
+                    imageFile.setSaveFileName(saveFileName); // save되는 파일명
+                    post.addImageFile(imageFile);
+                }
             }
         }
 

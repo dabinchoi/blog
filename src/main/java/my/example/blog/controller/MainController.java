@@ -20,7 +20,7 @@ public class MainController {
 
     @GetMapping("/main")
     public String main(
-            @RequestParam(name= "page",required = false,defaultValue = "1")int page,
+            @RequestParam(name= "page",required = false, defaultValue = "1")int page,
             @RequestParam(name = "categoryId", required = false) Long categoryId,
             @RequestParam(name= "searchKind",required = false) String searchKind,
             @RequestParam(name= "searchStr",required = false)String searchStr,

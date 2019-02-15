@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>post</title>
+    <script src="/webjars/jquery/3.3.1-2/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            //HTML 페이지가 모두 로딩되었을때 수행될 코드를 입력하면 됩니다.
+            var postParamId = $('#hiddenPostId').val();
+            $.ajax({
+                url: '/api/comments?postId=' + postParamId,
+                method: 'get',
+                async: true,
+                contentType: "application/json",
+                success: function (comments) {
+                    for(var i = 0; i < comments.length; i++) {
+                        var commentDiv = $('<div> name : ' + comments[i].name + '</div>');
+                        commentDiv.appendTo($('#comments'));
+                    }
+                },
+                error: function (err) {
+                    console.log(err.toString());
+                }
+            });
+            $('#commentBtn').click(function () {
+                var name = $('#commentName').val();
+                var content = $('#commentContent').val();
+                var passwd = $('#commentPasswd').val();
+                var postId = $('#commentPostId').val();
+                var JSONObject = {'name': name, 'content': content, 'passwd': passwd, 'postId': postId};
+                var jsonData = JSON.stringify( JSONObject );
+                console.log(name);
+                console.log(content);
+                console.log(passwd);
+                $.ajax({
+                    url: '/api/comments',
+                    method: 'post',
+                    data: jsonData,
+                    async: true,
+                    contentType: "application/json",
+                    success: function (comment) {
+                        var commentDiv = $('<div> name : ' + comment.name + '</div>');
+                        commentDiv.appendTo($('#comments'));
+                    },
+                    error: function (err) {
+                        console.log(err.toString());
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<h1>post</h1>
+
+name : <span th:text="${post.account.name}"></span><br>
+title : <span th:utext="${post.stripTitle}"></span><br>
+content : <span th:utext="${post.stripContent}"></span><br>
+<br><br>
+<hr><br>
+<form id="commentForm">
+    <input type="hidden" id="commentPostId" th:value="${post.id}">
+    name : <input type="text" name="name" id="commentName"><br>
+    password : <input type="password" name="passwd" id="commentPasswd"><br>
+    content : <textarea name="content" cols="50" rows="5" id="commentContent"></textarea><br>
+    <input type="button" id="commentBtn" value="쓰기"><br>
+
+</form>
+<div id="comments">
+
+</div>
+</body>
+
+<input type="hidden" id="hiddenPostId" th:value="${post.id}">
+</html>

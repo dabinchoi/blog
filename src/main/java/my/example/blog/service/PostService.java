@@ -46,4 +46,8 @@ public class PostService {
         return postRepository.getPosts(categoryId,start,limit,searchKind,searchStr);
 
     }
+    @Transactional(readOnly = true)
+    public Post getPost(Long id) {
+        return postRepository.getPost(id);
+    }
 }
