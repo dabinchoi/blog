@@ -49,6 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/posts/{id}").permitAll()
                 .antMatchers("/posts/**").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/main").permitAll()
+                .antMatchers("/chatrooms").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().fullyAuthenticated()
                 .and()

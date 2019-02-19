@@ -88,6 +88,7 @@
             <version>4.1.4</version>
         </dependency>
 
+        <!-- webjar -->
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>jquery</artifactId>
@@ -98,6 +99,7 @@
             <artifactId>bootstrap</artifactId>
             <version>4.2.1</version>
         </dependency>
+
         <!-- jsoup -->
         <dependency>
             <groupId>org.jsoup</groupId>
@@ -117,6 +119,24 @@
             <artifactId>jackson-dataformat-xml</artifactId>
         </dependency>
 
+        <!-- websocket -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
+
+        <!-- 프론트단에서 사용하는 sockjs 라이브러리 -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>sockjs-client</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+
+        <!-- websocket과 보안관련된 라이브러리 -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-messaging</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

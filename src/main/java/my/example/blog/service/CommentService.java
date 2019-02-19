@@ -32,6 +32,11 @@ public class CommentService {
 @Transactional(readOnly = true)
     public List<Comment> getComments(Long postId){
 
+
+
+
+
+
         return commentRepository.getComments(postId);
 }
 }
